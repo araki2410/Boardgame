@@ -15,6 +15,7 @@ class Agent:
 
     def get_input(self):
         ## ボードをみて空の場所を指定する
+        ## 今はみてない
         hand = [1,2,3]
         x = random.choice(hand)
         y = random.choice(hand)
