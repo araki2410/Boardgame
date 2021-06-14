@@ -9,6 +9,9 @@ class Agent:
     # random.seed(seed)
     random_hand_rate = 0.3 # 0~1
     bp_rate = 0.2 # 0~1
+    ## 選択時にランダムか否かの確率、back forward の割合、
+    ## ファイルへの書き出し、ランダム選択、ランダム選択か否かの判定を作成する
+
 
     def __init__(self):
         self.tktk = tiktak.Tiktak()
@@ -84,13 +87,9 @@ class Agent:
             count += 1
             turn = count % 2
             if turn == 0:
-       #         #x_, y_ = tktk.get_std() # 標準入力を受付
-       #         x_, y_ = self.get_input() #
-       #         x = x_-1
-       #         y = y_-1
-       #         print("X: ", x, ", Y: ", y)
+                # Player turn
                 print(count, ": ", player[turn], ": ", player_code[player[turn]])
-                count += self.player_turn(stone = player_code[player[turn]]) # Give stone
+                count += self.player_turn(stone = player_code[player[turn]]) # Give x, y, stone
             elif turn % 2 == 1:
                 x_, y_ = self.get_input() #
                 x = x_-1
