@@ -2,6 +2,7 @@
 
 import tiktak
 import random
+#import numpy
 
 class Agent:
     tktk = []
