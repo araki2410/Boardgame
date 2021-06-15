@@ -25,5 +25,10 @@ class Mymodel:
         finally:
             file_close()
     
+    def show_data(self):
+        print(modeldata)
+        print(type(modeldata))
+
+
 
 
