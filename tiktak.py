@@ -5,9 +5,11 @@ import numpy as np
 
 class Tiktak:
     board = []
+    empty_stone = [1,0,0]
+    black_stone = [0,1,0]
+    white_stone = [0,0,1]
     w_ = 3
     h_ = 3
-    empty_cel = 0
     victory_condition = 3
     success_code = 0 
     retry_code = -1
@@ -17,12 +19,12 @@ class Tiktak:
     empty_cel = 0
 
     def __init__(self):
-        self.board = myboard.Board2d(x=self.w_, y=self.h_, emp=self.empty_cel)
-        self.empty_cel = self.board.empty_cel
+        self.board = myboard.Board2d(x=self.w_, y=self.h_, emp=self.empty_stone)
+        self.empty_stone = self.board.empty_cel
 
     def reset_board(self):
-        self.board = myboard.Board2d(x=self.w_, y=self.h_, empty_cel=0)
-        self.empty_cel = self.board.empty_cel
+        self.board = myboard.Board2d(x=self.w_, y=self.h_, empty_stone=self.empty_stone)
+        self.empty_stone = self.board.empty_cel
 
     def set_stone(self,x,y,stone):
         self.board.set_piece(x,y,stone)
@@ -135,16 +137,18 @@ class Tiktak:
             return self.success_code
 
     def play(self,x,y,stone):
-        if self.check_stone(x,y) > 0:
-            print("Can't play there!!", x+1,y+1)
-            return self.retry_code
-        else:
+        # 空の場合石を置く、空でない場合リトライコードを返す、石を置いたら勝利判定を行う。
+        ## 引き分け判定がない
+        if self.check_stone(x,y) == self.empty_stone:
             self.set_stone(x,y,stone)
             self.show_board()
             if self.check_lines(x,y) == self.gameset_code:
                 print("win ", stone, " !!")
                 return self.gameset_code 
             return self.success_code
+        else:
+            print("Can't play there!!", x+1,y+1)
+            return self.retry_code
 
     def get_std(self):
         # 標準入力を受付
@@ -163,8 +167,8 @@ class Tiktak:
 
     def game(self):
         player = ["Black", "White"]
-        black_stone = 4 
-        white_stone = 8
+        black_stone = [0,1,0] 
+        white_stone = [0,0,1]
         player_code = {
                 player[0]:black_stone,
                 player[1]:white_stone
