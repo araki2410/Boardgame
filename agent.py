@@ -74,8 +74,8 @@ class Agent:
 
     def pvc_game(self):
         player = ["Black", "White"]
-        black_stone = 4
-        white_stone = 8
+        black_stone = [0,1,0]
+        white_stone = [0,0,1]
         player_code = {
                         player[0]:black_stone,
                         player[1]:white_stone

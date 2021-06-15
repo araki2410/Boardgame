@@ -5,9 +5,11 @@ import numpy as np
 
 class Tiktak:
     board = []
+   # player_labels = ["empty","Black","White"]
     empty_stone = [1,0,0]
     black_stone = [0,1,0]
     white_stone = [0,0,1]
+   # player_list ={player_labels[0]:empty_stone, player_labels[1]:black_stone, player_labels[2]:white_stone}
     w_ = 3
     h_ = 3
     victory_condition = 3
@@ -135,6 +137,18 @@ class Tiktak:
             return self.gameset_code
         else:
             return self.success_code
+
+    def jedgment(self,x,y):
+        # 勝利判定
+        # 置かれた石に対して毎回処理する。play, game, のどちらかから呼ぶ
+        player_label = self.board.board[y][x]
+        ## self.check_lines(x,y) 今はstatusを返す、これをcount何個並んでいるかだけ返してもらうようにする
+        ## 返してもらった数で勝利判定を行う
+
+        winner = 0
+
+        return winner
+
 
     def play(self,x,y,stone):
         # 空の場合石を置く、空でない場合リトライコードを返す、石を置いたら勝利判定を行う。
