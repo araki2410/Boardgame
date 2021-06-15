@@ -167,15 +167,13 @@ class Tiktak:
 
     def game(self):
         player = ["Black", "White"]
-        black_stone = [0,1,0] 
-        white_stone = [0,0,1]
         player_code = {
-                player[0]:black_stone,
-                player[1]:white_stone
+                player[0]:self.black_stone,
+                player[1]:self.white_stone
                 }
-        status = 0
-        count = 0
-        game_status = 0
+     #   status = 0
+        count = 0 # turn_count
+        game_status = 0 # ゲームの継続判定に使用
 
         while count < self.gameset_code:
             count += 1
@@ -191,10 +189,10 @@ class Tiktak:
                 print(count, ": ", player[turn], ": ", player_code[player[turn]])
                 count += self.play(x,y,player_code[player[turn]]) # Give x, y, stone
 
-            game_status = self.playable()
-            count += game_status
-            if count > self.gameset_code:
-                print("__DRAW__")
+            game_status = self.playable() # まだ石をおけるか？ 
+            count += game_status # ターン数に石を置けるか判定の結果を足す（ターン数で繰り返しを判定しているので……）
+#            if count > self.gameset_code: # 引き分け判定 ## ここじゃないと思うけどほかのファイルでもここになってる気がする。## しかも勝利時にも引き分け判定されるロジックになっている。
+#                print("__DRAW__")
         print("__GAME SET__")
 
 if __name__ == '__main__':
