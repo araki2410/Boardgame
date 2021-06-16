@@ -2,16 +2,16 @@ import numpy as np
 
 
 class Mymodel:
-    filedir = "./Model"
-    filename = filedir + "mymodel.model"
+    filename = "./Model/mymodel.model" 
     modeldata = []
     
 
-    def __init__(self, filename="mymodel.model"):#self.filename):
-        self.filename = filename
+    def __init__(self, filename="./Model/mymodel.model"):
+        self.filename = filename 
         try:
-            file_ = open(filename, "r+")
+            file_ = open(filename, "a")
             self.modeldata = np.array(file_)
+            file_.close()
         except Exception as ex:
             print(ex)
 
@@ -26,8 +26,8 @@ class Mymodel:
             file_close()
     
     def show_data(self):
-        print(modeldata)
-        print(type(modeldata))
+        print(self.modeldata)
+        print(type(self.modeldata))
 
 
 
