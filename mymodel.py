@@ -6,24 +6,19 @@ class Mymodel:
     modeldata = []
     
 
-    def __init__(self, filename="./Model/mymodel.model"):
-        self.filename = filename 
+    def __init__(self, filename_=filename):
+        self.filename = filename_
         try:
-            file_ = open(filename, "a")
-            self.modeldata = np.array(file_)
-            file_.close()
+            self.modeldata = np.loadtxt(filename_)
         except Exception as ex:
             print(ex)
 
-    def write_data(self, data, filename):
+    def write_data(self, data, filename_=filename):
         # Data should be numpy array
         try:
-            file_ = open(filename, "w+")
-            file_.write(data)
+            np.savetxt(filename_, data)
         except Exception as ex:
             print(ex)
-        finally:
-            file_close()
     
     def show_data(self):
         print(self.modeldata)
