@@ -2,6 +2,7 @@
 
 import tiktak
 import random
+import mymodel
 #import numpy
 
 class Agent:
@@ -10,12 +11,17 @@ class Agent:
     # random.seed(seed)
     random_hand_rate = 0.3 # 0~1
     bp_rate = 0.2 # 0~1
+    model = mymodel.Mymodel()
     ## 選択時にランダムか否かの確率、back forward の割合、
     ## ファイルへの書き出し、ランダム選択、ランダム選択か否かの判定を作成する
 
 
     def __init__(self):
         self.tktk = tiktak.Tiktak()
+
+    def save_model(self, data=model.modeldata):
+        # data should be numpy array
+        self.mymodel.write_model(data)
 
     def get_input(self):
         ## ボードをみて空の場所を指定する
