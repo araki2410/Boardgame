@@ -31,6 +31,21 @@ class Agent:
         y = random.choice(hand)
         return x, y
 
+    def play_stone(self,x_,y_,stone):
+        print("X: ", x_, ", Y: ", y_)
+        x = x_-1
+        y = y_-1
+        result_code = self.tktk.play(x,y,stone) # Give x, y, stone
+        return result_code
+
+    def player_turn(self, stone):
+        x_, y_ = self.tktk.get_std() # 標準入力を受付(1~3)
+        return self.play_stone(x_,y_,stone)
+ 
+    def cpu_turn(self, stone):
+        x_, y_ = self.get_input() # プログラム上で入力(1~3)
+        return self.play_stone(x_,y_,stone)
+
 
     def cvc_game(self):
         player = ["Black", "White"]
@@ -62,21 +77,6 @@ class Agent:
             if self.tktk.playable() > 0:
                 print("Draw")
                 break
-
-    def play_stone(self,x_,y_,stone):
-        print("X: ", x_, ", Y: ", y_)
-        x = x_-1
-        y = y_-1
-        result_code = self.tktk.play(x,y,stone) # Give x, y, stone
-        return result_code
-
-    def player_turn(self, stone):
-        x_, y_ = self.tktk.get_std() # 標準入力を受付(1~3)
-        return self.play_stone(x_,y_,stone)
- 
-    def cpu_turn(self, stone):
-        x_, y_ = self.get_input() # プログラム上で入力(1~3)
-        return self.play_stone(x_,y_,stone)
 
     def pvc_game(self):
         player = ["Black", "White"]
