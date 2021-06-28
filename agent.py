@@ -24,12 +24,23 @@ class Agent:
         self.mymodel.write_model(data)
 
     def get_input(self):
+	## CPUの手
         ## ボードをみて空の場所を指定する
         ## 今はみてない
-        hand = [1,2,3]
-        x = random.choice(hand)
-        y = random.choice(hand)
-        return x, y
+        rand_ = random.random()
+        if rand_ > self.random_hand_rate:
+            # 学習データを読む
+            # 点数の高い手を選択
+            ## 今はなにもしてない
+            hand = [1,2,3]
+            x = random.choice(hand)
+            y = random.choice(hand)
+            return x, y
+        else:
+            hand = [1,2,3]
+            x = random.choice(hand)
+            y = random.choice(hand)
+            return x, y
 
     def play_stone(self,x_,y_,stone):
         print("X: ", x_, ", Y: ", y_)
